@@ -11,6 +11,7 @@ function Home() {
 
             <div className="home__row">
                 <Product />
+                <Product />
                 {/* Products */}
             </div>
 
