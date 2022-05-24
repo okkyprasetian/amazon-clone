@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom'
 import './Header.css'
 import { BiSearchAlt2, BiShoppingBag } from 'react-icons/bi'
 
 function Header() {
     return (
         <div className="header">
-            <img src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon logo" className="header__logo" />
+
+            <Link to={'/'}>
+                <img src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon logo" className="header__logo" />
+            </Link>
 
             <div className="header__search">
                 <input type="text" className="header__searchInput" />
@@ -28,10 +32,12 @@ function Header() {
                     <span className="header__optionLineTwo">Prime</span>
                 </div>
 
-                <div className="header__optionBasket">
-                    <BiShoppingBag size={28} className='header__basketIcon' />
-                    <span className="optionLineTwo header__basketCount">0</span>
-                </div>
+                <Link to={'/checkout'} >
+                    <div className="header__optionBasket">
+                        <BiShoppingBag size={28} className='header__basketIcon' />
+                        <span className="optionLineTwo header__basketCount">0</span>
+                    </div>
+                </Link>
 
             </div>
         </div>
