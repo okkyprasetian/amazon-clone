@@ -1,8 +1,14 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { StateContext } from './Provider'
 import './Header.css'
 import { BiSearchAlt2, BiShoppingBag } from 'react-icons/bi'
 
 function Header() {
+
+    // Install global state to local header state
+    const { basket } = useContext(StateContext)
+
     return (
         <div className="header">
 
@@ -35,7 +41,7 @@ function Header() {
                 <Link to={'/checkout'} >
                     <div className="header__optionBasket">
                         <BiShoppingBag size={28} className='header__basketIcon' />
-                        <span className="optionLineTwo header__basketCount">0</span>
+                        <span className="optionLineTwo header__basketCount">{basket.length}</span>
                     </div>
                 </Link>
 

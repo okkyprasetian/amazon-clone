@@ -1,14 +1,20 @@
+import { useContext } from 'react';
 import CurrencyFormat from 'react-currency-format'
+import { StateContext } from './Provider';
 import './Subtotal.css'
 
 function Subtotal() {
+
+    // Install global state to local state
+    const { basket, totalPrice } = useContext(StateContext)
+
     return (
         <div className="subtotal">
             <CurrencyFormat
                 renderText={(value) => (
                     <>
                         <p>
-                            Subtotal (0 items): <strong>0</strong>
+                            Subtotal ({basket.length} items): <strong>{totalPrice}</strong>
                         </p>
                         <small className="subtotal__gift">
                             <input type="checkbox" /> This order contains a gift

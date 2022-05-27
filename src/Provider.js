@@ -35,7 +35,10 @@ export const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const value = {
+
         basket: state.basket,
+
+        // Add new item to basket
         addToBasket: (id, title, price, image, rating) => {
             dispatch({
                 type: ACTION.ADD_TO_BASKET,
@@ -47,7 +50,10 @@ export const Provider = ({ children }) => {
                     rating: rating
                 }
             })
-        }
+        },
+
+        // Sum of all basket item price
+        totalPrice: state.basket.length <= 0 ? 0 : state.basket.map(e => e.price).reduce((acc, curr) => acc + curr)
     }
 
     return (
