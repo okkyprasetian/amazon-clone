@@ -17,6 +17,7 @@ function Home() {
                     image="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1629999184i/10127019.jpg"
                     rating={4} />
                 <Product
+                    id={865420}
                     title="Wireless Headphone"
                     price={56.66}
                     image="https://www.kindpng.com/picc/m/409-4092291_best-headphones-hd-png-download.png"
