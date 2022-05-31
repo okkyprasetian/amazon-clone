@@ -8,7 +8,8 @@ const initialState = {
     basket: []
 }
 const ACTION = {
-    ADD_TO_BASKET: 'ADD_TO_BASKET'
+    ADD_TO_BASKET: 'ADD_TO_BASKET',
+    REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET'
 }
 
 // Create Reducer function
@@ -20,6 +21,10 @@ const reducer = (state, action) => {
                     ...state.basket, action.item
                 ]
             };
+        case ACTION.REMOVE_FROM_BASKET:
+            return{
+                basket: state.basket.filter(item => item.id !== action.item.id)
+            }
 
         default:
             return state
@@ -54,6 +59,14 @@ export const Provider = ({ children }) => {
                     price: price,
                     rating: rating
                 }
+            })
+        },
+
+        // Remove item from basket
+        removeFromBasket: id => {
+            dispatch({
+                type: ACTION.ADD_TO_BASKET,
+                item: {id: id}
             })
         },
 
