@@ -22,7 +22,7 @@ function CheckoutProduct({ id, title, price, image, rating }) {
                         <p key={i}>⭐</p>
                     ))}
                 </div>
-                <button onClick={removeFromBasket(id)} className="checkoutProduct__remove">
+                <button onClick={() => removeFromBasket(id)} className="checkoutProduct__remove">
                     Remove item
                 </button>
             </div>

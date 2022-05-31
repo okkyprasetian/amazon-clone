@@ -23,7 +23,7 @@ const reducer = (state, action) => {
             };
         case ACTION.REMOVE_FROM_BASKET:
             return{
-                basket: state.basket.filter(item => item.id !== action.item.id)
+                basket: [...state.basket.filter(item => item.id !== action.item.id)]
             }
 
         default:
@@ -65,7 +65,7 @@ export const Provider = ({ children }) => {
         // Remove item from basket
         removeFromBasket: id => {
             dispatch({
-                type: ACTION.ADD_TO_BASKET,
+                type: ACTION.REMOVE_FROM_BASKET,
                 item: {id: id}
             })
         },
@@ -80,3 +80,5 @@ export const Provider = ({ children }) => {
         </StateContext.Provider>
     )
 }
+
+// Setelah menambahkan new function di state, websitenya menjadi unresponsive. Kesalahan logic di code sehingga membuat pemrosesannya terlalu lama atau bahkan infiniti
