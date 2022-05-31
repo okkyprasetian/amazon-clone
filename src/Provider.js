@@ -1,5 +1,6 @@
 import { useReducer, createContext } from "react";
 
+
 // ----- USE REDUCER SIDE ----- //
 
 // Initial State and Action
@@ -25,6 +26,7 @@ const reducer = (state, action) => {
     }
 }
 
+
 // ----- USE CONTEXT SIDE ----- //
 
 // Create Context
@@ -32,10 +34,13 @@ export const StateContext = createContext();
 
 // context and provider
 export const Provider = ({ children }) => {
+
+    // Install usereducer in this provider for global state using usecontext
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const value = {
 
+        // Basket
         basket: state.basket,
 
         // Add new item to basket
