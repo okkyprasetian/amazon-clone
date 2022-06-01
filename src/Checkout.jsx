@@ -7,7 +7,7 @@ import './Checkout.css'
 function Checkout() {
 
     // Install global state basket
-    const { basket } = useContext(StateContext)
+    const { basket, user } = useContext(StateContext)
 
     return (
         <div className="checkout">
@@ -15,6 +15,7 @@ function Checkout() {
             <div className="checkout__left">
                 <img src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg" alt="ad" className="checkout__ad" />
                 <div>
+                    <h3>Hello, {user?.email}</h3>
                     <h2 className="checkout__title">Your Shoping Basket</h2>
 
                     {basket.map(item => (
