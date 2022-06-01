@@ -3,6 +3,7 @@ import { Provider } from './Provider'
 import Header from './Header'
 import Home from './Home'
 import Checkout from './Checkout'
+import Login from './Login'
 import './App.css';
 
 function App() {
@@ -13,12 +14,16 @@ function App() {
     <Router>
       <Provider>
         <div className="App">
-          <Header />
           <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
             <Route path="/checkout">
+              <Header />
               <Checkout />
             </Route>
             <Route path="/">
+              <Header />
               <Home />
             </Route>
           </Switch>
@@ -31,7 +36,3 @@ function App() {
 export default App;
 
 // Menggunakan convention penamaan BEM
-
-// ERROR
-
-// STATE PROVIDER DAN SELURUH ALLY NYA YG MEMBUAT RENDER ERROR
