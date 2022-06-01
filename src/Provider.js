@@ -5,11 +5,13 @@ import { useReducer, createContext } from "react";
 
 // Initial State and Action
 const initialState = {
-    basket: []
+    basket: [],
+    user: null
 }
 const ACTION = {
     ADD_TO_BASKET: 'ADD_TO_BASKET',
-    REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET'
+    REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET',
+    SET_USER: 'SET_USER'
 }
 
 // Create Reducer function
@@ -24,8 +26,11 @@ const reducer = (state, action) => {
         case ACTION.REMOVE_FROM_BASKET:
             return{
                 basket: [...state.basket.filter(item => item.id !== action.item.id)]
-            }
-
+            };
+        case ACTION.SET_USER:
+            return{
+                user: action.user
+            };
         default:
             return state
     }
@@ -45,8 +50,9 @@ export const Provider = ({ children }) => {
 
     const value = {
 
-        // Basket
+        // Global State
         basket: state.basket,
+        user: state.user,
 
         // Add new item to basket
         addToBasket: (id, title, price, image, rating) => {
@@ -71,7 +77,15 @@ export const Provider = ({ children }) => {
         },
 
         // Sum of all basket item price
-        totalPrice: state.basket.length <= 0 ? 0 : state.basket.map(e => e.price).reduce((acc, curr) => acc + curr)
+        totalPrice: state.basket.length <= 0 ? 0 : state.basket.map(e => e.price).reduce((acc, curr) => acc + curr),
+
+        // Set user or loggin in user
+        setUser: authUser => {
+            dispatch({
+                type: ACTION.SET_USER,
+                user: authUser
+            })
+        }
     }
 
     return (
@@ -80,5 +94,3 @@ export const Provider = ({ children }) => {
         </StateContext.Provider>
     )
 }
-
-// Setelah menambahkan new function di state, websitenya menjadi unresponsive. Kesalahan logic di code sehingga membuat pemrosesannya terlalu lama atau bahkan infiniti
