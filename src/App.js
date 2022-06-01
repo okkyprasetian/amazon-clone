@@ -22,7 +22,7 @@ function App() {
         setUser(authUser)
       } else {
         // User Logged Out
-        // setUser(null)
+        setUser(null)
       }
     })
   }, [])

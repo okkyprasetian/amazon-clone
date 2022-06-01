@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom'
 import { StateContext } from './Provider'
 import './Header.css'
 import { BiSearchAlt2, BiShoppingBag } from 'react-icons/bi'
+import { auth } from './firebase'
 
 function Header() {
 
     // Install global state to local header state
-    const { basket } = useContext(StateContext)
+    const { basket, user } = useContext(StateContext)
+
+    // Function
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut()
+            alert('Signed Out')
+        }
+    }
 
     return (
         <div className="header">
@@ -23,10 +32,10 @@ function Header() {
 
             <div className="header__nav">
 
-                <Link to={'/login'}>
-                    <div className="header__option">
+                <Link to={!user && '/login'}>
+                    <div onClick={handleAuthentication} className="header__option">
                         <span className="header__optionLineOne">Hello Guest</span>
-                        <span className="header__optionLineTwo">Sign In</span>
+                        <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
 
