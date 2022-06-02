@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import CurrencyFormat from 'react-currency-format'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { StateContext } from './Provider';
 import './Subtotal.css'
 
@@ -7,6 +8,9 @@ function Subtotal() {
 
     // Install global state to local state
     const { basket, totalPrice } = useContext(StateContext)
+
+    // Use history
+    const history = useHistory()
 
     return (
         <div className="subtotal">
@@ -28,7 +32,7 @@ function Subtotal() {
                 prefix={'$'}
             />
 
-            <button>Proceed to Checkout</button>
+            <button onClick={() => history.push('/payment')} >Proceed to Checkout</button>
         </div>
     );
 }

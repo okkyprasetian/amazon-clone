@@ -5,6 +5,7 @@ import Header from './Header'
 import Home from './Home'
 import Checkout from './Checkout'
 import Login from './Login'
+import Payment from './Payment'
 import { auth } from './firebase'
 import './App.css';
 
@@ -16,7 +17,6 @@ function App() {
 
     auth.onAuthStateChanged(authUser => {
       console.log('The user is ', authUser)
-
       if (authUser) {
         // User Logged In
         setUser(authUser)
@@ -25,6 +25,7 @@ function App() {
         setUser(null)
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -37,6 +38,10 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           <Route path="/">
             <Header />
